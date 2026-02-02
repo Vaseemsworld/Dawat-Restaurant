@@ -1,0 +1,1484 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dawat Restaurant - A Royal Feast in Every Bite</title>
+    <meta
+      name="description"
+      content="Experience royal Indian hospitality at Dawat Restaurant. Premium non-veg dishes, biryanis, and kebabs crafted with perfection."
+    />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Jost:wght@200;300;400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --midnight: #0a0e1a;
+        --deep-navy: #1a1f35;
+        --royal-teal: #2d6e6a;
+        --emerald: #3a7d72;
+        --soft-gold: #d4af37;
+        --warm-ivory: #f5f1e8;
+        --light-beige: #e8e2d5;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Jost", sans-serif;
+        background: var(--midnight);
+        color: var(--warm-ivory);
+        overflow-x: hidden;
+        line-height: 1.6;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4 {
+        font-family: "Cormorant Garamond", serif;
+        font-weight: 600;
+        letter-spacing: 1px;
+      }
+
+      /* Navbar */
+      .navbar {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 1000;
+        background: rgba(10, 14, 26, 0.95);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+        transition: all 0.3s ease;
+      }
+
+      .navbar.scrolled {
+        background: rgba(10, 14, 26, 0.98);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+      }
+
+      .nav-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 1.2rem 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1.8rem;
+        font-weight: 700;
+        letter-spacing: 2px;
+        color: var(--soft-gold);
+        text-decoration: none;
+        position: relative;
+      }
+
+      .logo::after {
+        content: "";
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: var(--soft-gold);
+        transition: width 0.3s ease;
+      }
+
+      .logo:hover::after {
+        width: 100%;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 2.5rem;
+        list-style: none;
+      }
+
+      .nav-links a {
+        color: var(--warm-ivory);
+        text-decoration: none;
+        font-size: 0.95rem;
+        font-weight: 300;
+        letter-spacing: 1px;
+        transition: color 0.3s ease;
+        position: relative;
+      }
+
+      .nav-links a::before {
+        content: "";
+        position: absolute;
+        bottom: -5px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 0;
+        height: 1px;
+        background: var(--soft-gold);
+        transition: width 0.3s ease;
+      }
+
+      .nav-links a:hover {
+        color: var(--soft-gold);
+      }
+
+      .nav-links a:hover::before {
+        width: 100%;
+      }
+
+      .mobile-menu {
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        cursor: pointer;
+      }
+
+      .mobile-menu span {
+        width: 25px;
+        height: 2px;
+        background: var(--soft-gold);
+        transition: all 0.3s ease;
+      }
+
+      /* Hero Section */
+      .hero {
+        height: 100vh;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+      }
+
+      .hero-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, #0a0e1a 0%, #1a1f35 100%);
+        overflow: hidden;
+      }
+
+      .hero-bg::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image:
+          radial-gradient(
+            circle at 20% 50%,
+            rgba(45, 110, 106, 0.15) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 80% 80%,
+            rgba(212, 175, 55, 0.1) 0%,
+            transparent 50%
+          );
+        animation: pulse 8s ease-in-out infinite;
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 0.5;
+        }
+        50% {
+          opacity: 1;
+        }
+      }
+
+      .hero-pattern {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.03;
+        background-image: repeating-linear-gradient(
+          45deg,
+          transparent,
+          transparent 10px,
+          var(--soft-gold) 10px,
+          var(--soft-gold) 11px
+        );
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 2;
+        text-align: center;
+        padding: 2rem;
+        animation: fadeInUp 1.2s ease-out;
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(40px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .hero-subtitle {
+        font-size: 0.95rem;
+        letter-spacing: 4px;
+        color: var(--soft-gold);
+        margin-bottom: 1.5rem;
+        font-weight: 300;
+        animation: fadeIn 1.5s ease-out 0.3s both;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      .hero h1 {
+        font-size: clamp(3rem, 8vw, 6rem);
+        margin-bottom: 1rem;
+        line-height: 1.1;
+        color: var(--warm-ivory);
+        animation: fadeInUp 1.2s ease-out 0.2s both;
+      }
+
+      .hero-tagline {
+        font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+        color: var(--light-beige);
+        font-weight: 300;
+        letter-spacing: 2px;
+        margin-bottom: 3rem;
+        animation: fadeInUp 1.2s ease-out 0.4s both;
+      }
+
+      .hero-buttons {
+        display: flex;
+        gap: 1.5rem;
+        justify-content: center;
+        flex-wrap: wrap;
+        animation: fadeInUp 1.2s ease-out 0.6s both;
+      }
+
+      .btn {
+        padding: 1rem 2.5rem;
+        font-size: 0.95rem;
+        letter-spacing: 1.5px;
+        border: none;
+        cursor: pointer;
+        transition: all 0.4s ease;
+        text-decoration: none;
+        display: inline-block;
+        font-family: "Jost", sans-serif;
+        font-weight: 400;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .btn-primary {
+        background: var(--soft-gold);
+        color: var(--midnight);
+      }
+
+      .btn-primary::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.3),
+          transparent
+        );
+        transition: left 0.5s ease;
+      }
+
+      .btn-primary:hover::before {
+        left: 100%;
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 30px rgba(212, 175, 55, 0.4);
+      }
+
+      .btn-secondary {
+        background: transparent;
+        color: var(--warm-ivory);
+        border: 1px solid var(--soft-gold);
+      }
+
+      .btn-secondary:hover {
+        background: var(--soft-gold);
+        color: var(--midnight);
+        transform: translateY(-2px);
+        box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+      }
+
+      .scroll-indicator {
+        position: absolute;
+        bottom: 3rem;
+        left: 50%;
+        transform: translateX(-50%);
+        animation: bounce 2s infinite;
+      }
+
+      @keyframes bounce {
+        0%,
+        20%,
+        50%,
+        80%,
+        100% {
+          transform: translateX(-50%) translateY(0);
+        }
+        40% {
+          transform: translateX(-50%) translateY(-10px);
+        }
+        60% {
+          transform: translateX(-50%) translateY(-5px);
+        }
+      }
+
+      .scroll-indicator::after {
+        content: "↓";
+        font-size: 1.5rem;
+        color: var(--soft-gold);
+        opacity: 0.6;
+      }
+
+      /* Section Styling */
+      section {
+        padding: 6rem 2rem;
+        position: relative;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .section-title {
+        text-align: center;
+        margin-bottom: 1rem;
+        font-size: clamp(2.5rem, 5vw, 4rem);
+        color: var(--soft-gold);
+        position: relative;
+        display: inline-block;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      .section-title::after {
+        content: "";
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100px;
+        height: 2px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          var(--soft-gold),
+          transparent
+        );
+      }
+
+      .section-subtitle {
+        text-align: center;
+        color: var(--light-beige);
+        font-size: 1.1rem;
+        margin-bottom: 4rem;
+        font-weight: 300;
+        letter-spacing: 1px;
+      }
+
+      /* About Section */
+      .about {
+        background: linear-gradient(
+          180deg,
+          var(--midnight) 0%,
+          var(--deep-navy) 100%
+        );
+      }
+
+      .about-content {
+        max-width: 800px;
+        margin: 0 auto 4rem;
+        text-align: center;
+        font-size: 1.15rem;
+        line-height: 1.9;
+        color: var(--light-beige);
+        font-weight: 300;
+      }
+
+      .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2.5rem;
+        margin-top: 4rem;
+      }
+
+      .feature-card {
+        text-align: center;
+        padding: 2.5rem 1.5rem;
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid rgba(212, 175, 55, 0.1);
+        border-radius: 10px;
+        transition: all 0.4s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .feature-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(212, 175, 55, 0.05),
+          transparent
+        );
+        transition: left 0.6s ease;
+      }
+
+      .feature-card:hover::before {
+        left: 100%;
+      }
+
+      .feature-card:hover {
+        transform: translateY(-10px);
+        border-color: rgba(212, 175, 55, 0.3);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+      }
+
+      .feature-icon {
+        font-size: 3rem;
+        margin-bottom: 1.5rem;
+        display: inline-block;
+      }
+
+      .feature-card h3 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        color: var(--soft-gold);
+      }
+
+      .feature-card p {
+        color: var(--light-beige);
+        font-size: 0.95rem;
+        line-height: 1.7;
+      }
+
+      /* Menu Section */
+      .menu {
+        background: var(--midnight);
+      }
+
+      .menu-categories {
+        display: grid;
+        gap: 4rem;
+      }
+
+      .menu-category {
+        background: linear-gradient(
+          135deg,
+          rgba(26, 31, 53, 0.5) 0%,
+          rgba(26, 31, 53, 0.3) 100%
+        );
+        border: 1px solid rgba(212, 175, 55, 0.15);
+        border-radius: 15px;
+        padding: 3rem 2.5rem;
+        transition: all 0.4s ease;
+      }
+
+      .menu-category:hover {
+        border-color: rgba(212, 175, 55, 0.3);
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+      }
+
+      .category-title {
+        font-size: 2.2rem;
+        color: var(--soft-gold);
+        margin-bottom: 0.5rem;
+        position: relative;
+        display: inline-block;
+      }
+
+      .category-title::after {
+        content: "";
+        position: absolute;
+        bottom: -8px;
+        left: 0;
+        width: 60px;
+        height: 2px;
+        background: var(--royal-teal);
+      }
+
+      .category-icon {
+        font-size: 2.5rem;
+        margin-bottom: 1.5rem;
+        display: block;
+      }
+
+      .menu-items {
+        margin-top: 2rem;
+        display: grid;
+        gap: 1.5rem;
+      }
+
+      .menu-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        padding-bottom: 1.5rem;
+        border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+        transition: all 0.3s ease;
+      }
+
+      .menu-item:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+      }
+
+      .menu-item:hover {
+        transform: translateX(10px);
+      }
+
+      .item-info {
+        flex: 1;
+      }
+
+      .item-name {
+        font-size: 1.3rem;
+        color: var(--warm-ivory);
+        margin-bottom: 0.5rem;
+        font-family: "Cormorant Garamond", serif;
+        font-weight: 500;
+      }
+
+      .item-description {
+        color: var(--light-beige);
+        font-size: 0.9rem;
+        line-height: 1.6;
+        opacity: 0.8;
+      }
+
+      .item-price {
+        font-size: 1.2rem;
+        color: var(--soft-gold);
+        font-weight: 500;
+        margin-left: 2rem;
+        white-space: nowrap;
+        font-family: "Cormorant Garamond", serif;
+      }
+
+      /* Gallery Section */
+      .gallery {
+        background: linear-gradient(
+          180deg,
+          var(--midnight) 0%,
+          var(--deep-navy) 100%
+        );
+      }
+
+      .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.5rem;
+        margin-top: 3rem;
+      }
+
+      .gallery-item {
+        position: relative;
+        aspect-ratio: 1;
+        overflow: hidden;
+        border-radius: 10px;
+        cursor: pointer;
+        background: linear-gradient(135deg, #1a1f35 0%, #2d6e6a 100%);
+      }
+
+      .gallery-item::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(10, 14, 26, 0);
+        transition: background 0.4s ease;
+        z-index: 1;
+      }
+
+      .gallery-item:hover::before {
+        background: rgba(10, 14, 26, 0.7);
+      }
+
+      .gallery-overlay {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: var(--soft-gold);
+        font-size: 1.5rem;
+        font-family: "Cormorant Garamond", serif;
+        opacity: 0;
+        transition: opacity 0.4s ease;
+        z-index: 2;
+        text-align: center;
+        pointer-events: none;
+      }
+
+      .gallery-item:hover .gallery-overlay {
+        opacity: 1;
+      }
+
+      .gallery-placeholder {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 4rem;
+        opacity: 0.3;
+      }
+
+      /* Why Choose Us */
+      .why-choose {
+        background: var(--midnight);
+      }
+
+      .reasons-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+        margin-top: 3rem;
+      }
+
+      .reason-card {
+        background: linear-gradient(
+          135deg,
+          rgba(45, 110, 106, 0.1) 0%,
+          rgba(26, 31, 53, 0.3) 100%
+        );
+        padding: 2.5rem 2rem;
+        border-radius: 15px;
+        border: 1px solid rgba(212, 175, 55, 0.15);
+        text-align: center;
+        transition: all 0.4s ease;
+        backdrop-filter: blur(10px);
+      }
+
+      .reason-card:hover {
+        transform: translateY(-10px);
+        border-color: var(--soft-gold);
+        box-shadow: 0 15px 40px rgba(212, 175, 55, 0.2);
+      }
+
+      .reason-icon {
+        font-size: 3rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .reason-card h3 {
+        font-size: 1.6rem;
+        color: var(--soft-gold);
+        margin-bottom: 1rem;
+      }
+
+      .reason-card p {
+        color: var(--light-beige);
+        line-height: 1.7;
+        font-size: 0.95rem;
+      }
+
+      /* Location Section */
+      .location {
+        background: linear-gradient(
+          180deg,
+          var(--midnight) 0%,
+          var(--deep-navy) 100%
+        );
+      }
+
+      .location-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 3rem;
+        margin-top: 3rem;
+      }
+
+      .contact-card {
+        background: rgba(26, 31, 53, 0.5);
+        padding: 2.5rem;
+        border-radius: 15px;
+        border: 1px solid rgba(212, 175, 55, 0.15);
+        transition: all 0.3s ease;
+      }
+
+      .contact-card:hover {
+        border-color: var(--soft-gold);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      }
+
+      .contact-card h3 {
+        font-size: 1.8rem;
+        color: var(--soft-gold);
+        margin-bottom: 1.5rem;
+      }
+
+      .contact-info {
+        display: flex;
+        flex-direction: column;
+        gap: 1.2rem;
+      }
+
+      .contact-item {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        color: var(--light-beige);
+        font-size: 1rem;
+      }
+
+      .contact-item span:first-child {
+        font-size: 1.5rem;
+      }
+
+      .contact-item a {
+        color: var(--light-beige);
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+
+      .contact-item a:hover {
+        color: var(--soft-gold);
+      }
+
+      .map-placeholder {
+        background: rgba(45, 110, 106, 0.2);
+        border: 2px dashed rgba(212, 175, 55, 0.3);
+        border-radius: 15px;
+        height: 300px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 3rem;
+        opacity: 0.4;
+      }
+
+      .hours-list {
+        list-style: none;
+        margin-top: 1rem;
+      }
+
+      .hours-list li {
+        padding: 0.8rem 0;
+        border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .hours-list li:last-child {
+        border-bottom: none;
+      }
+
+      /* CTA Banner */
+      .cta-banner {
+        background: linear-gradient(
+          135deg,
+          var(--royal-teal) 0%,
+          var(--emerald) 100%
+        );
+        padding: 5rem 2rem;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .cta-banner::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image:
+          radial-gradient(
+            circle at 30% 50%,
+            rgba(212, 175, 55, 0.1) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 70% 50%,
+            rgba(10, 14, 26, 0.2) 0%,
+            transparent 50%
+          );
+      }
+
+      .cta-content {
+        position: relative;
+        z-index: 1;
+      }
+
+      .cta-banner h2 {
+        font-size: clamp(2rem, 5vw, 3.5rem);
+        color: var(--warm-ivory);
+        margin-bottom: 1.5rem;
+      }
+
+      .cta-banner p {
+        font-size: 1.2rem;
+        color: var(--light-beige);
+        margin-bottom: 2.5rem;
+        font-weight: 300;
+      }
+
+      .cta-buttons {
+        display: flex;
+        gap: 1.5rem;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .btn-cta {
+        background: var(--soft-gold);
+        color: var(--midnight);
+        padding: 1.2rem 3rem;
+        border: none;
+        font-size: 1rem;
+        letter-spacing: 1.5px;
+        cursor: pointer;
+        transition: all 0.4s ease;
+        text-decoration: none;
+        display: inline-block;
+        font-weight: 500;
+      }
+
+      .btn-cta:hover {
+        background: var(--warm-ivory);
+        transform: translateY(-3px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+      }
+
+      /* Footer */
+      .footer {
+        background: var(--midnight);
+        padding: 4rem 2rem 2rem;
+        border-top: 1px solid rgba(212, 175, 55, 0.1);
+      }
+
+      .footer-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        text-align: center;
+      }
+
+      .footer-logo {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 2.5rem;
+        color: var(--soft-gold);
+        margin-bottom: 2rem;
+        font-weight: 700;
+        letter-spacing: 2px;
+      }
+
+      .social-links {
+        display: flex;
+        gap: 2rem;
+        justify-content: center;
+        margin-bottom: 2rem;
+      }
+
+      .social-links a {
+        font-size: 1.8rem;
+        color: var(--light-beige);
+        transition: all 0.3s ease;
+        text-decoration: none;
+      }
+
+      .social-links a:hover {
+        color: var(--soft-gold);
+        transform: translateY(-3px);
+      }
+
+      .footer-text {
+        color: var(--light-beige);
+        font-size: 0.9rem;
+        opacity: 0.7;
+        margin-bottom: 0.5rem;
+      }
+
+      .footer-tagline {
+        color: var(--soft-gold);
+        font-style: italic;
+        font-size: 0.95rem;
+        margin-top: 1rem;
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        .nav-links {
+          display: none;
+        }
+
+        .mobile-menu {
+          display: flex;
+        }
+
+        .hero h1 {
+          font-size: 2.5rem;
+        }
+
+        .hero-tagline {
+          font-size: 1rem;
+        }
+
+        .hero-buttons {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .btn {
+          width: 100%;
+          max-width: 300px;
+        }
+
+        section {
+          padding: 4rem 1.5rem;
+        }
+
+        .features-grid,
+        .reasons-grid,
+        .location-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .gallery-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .menu-item {
+          flex-direction: column;
+          gap: 0.5rem;
+        }
+
+        .item-price {
+          margin-left: 0;
+        }
+      }
+
+      /* Smooth Scroll */
+      html {
+        scroll-behavior: smooth;
+      }
+
+      /* Selection */
+      ::selection {
+        background: var(--soft-gold);
+        color: var(--midnight);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+      <div class="nav-container">
+        <a href="#" class="logo">DAWAT</a>
+        <ul class="nav-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#menu">Menu</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="mobile-menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+      <div class="hero-bg">
+        <div class="hero-pattern"></div>
+      </div>
+      <div class="hero-content">
+        <div class="hero-subtitle">AUTHENTIC ROYAL CUISINE</div>
+        <h1>DAWAT<br />RESTAURANT</h1>
+        <p class="hero-tagline">A Royal Feast in Every Bite</p>
+        <div class="hero-buttons">
+          <a href="#menu" class="btn btn-primary">EXPLORE MENU</a>
+          <a href="#contact" class="btn btn-secondary">RESERVE A TABLE</a>
+        </div>
+      </div>
+      <div class="scroll-indicator"></div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+      <div class="container">
+        <h2 class="section-title">About Dawat</h2>
+        <p class="section-subtitle">Where Tradition Meets Excellence</p>
+
+        <div class="about-content">
+          <p>
+            Dawat Restaurant brings the tradition of royal Indian hospitality to
+            your plate. From rich gravies to smoky kebabs and aromatic biryanis,
+            every dish is prepared with patience, perfection, and passion. We
+            believe in preserving authentic flavors while creating an ambience
+            that makes every meal feel like a celebration.
+          </p>
+        </div>
+
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon">👑</div>
+            <h3>Royal Recipes</h3>
+            <p>
+              Time-honored recipes passed down through generations, crafted with
+              authentic spices and traditional techniques.
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🥘</div>
+            <h3>Premium Ingredients</h3>
+            <p>
+              Only the finest, freshest ingredients sourced daily to ensure
+              exceptional quality in every dish.
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">✨</div>
+            <h3>Authentic Flavors</h3>
+            <p>
+              True to tradition, our chefs recreate the rich, complex flavors of
+              royal Indian cuisine.
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🏛️</div>
+            <h3>Modern Ambience</h3>
+            <p>
+              Elegant interiors that blend classic sophistication with
+              contemporary comfort.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section class="menu" id="menu">
+      <div class="container">
+        <h2 class="section-title">Signature Menu</h2>
+        <p class="section-subtitle">Discover Our Royal Collection</p>
+
+        <div class="menu-categories">
+          <!-- Chef's Special -->
+          <div class="menu-category">
+            <span class="category-icon">🔥</span>
+            <h3 class="category-title">Chef's Special</h3>
+            <div class="menu-items">
+              <div class="menu-item">
+                <div class="item-info">
+                  <h4 class="item-name">Chicken Changezi</h4>
+                  <p class="item-description">
+                    Tender chicken cooked in a rich, creamy tomato-based gravy
+                    with aromatic spices and a hint of fenugreek
+                  </p>
+                </div>
+                <div class="item-price">₹425</div>
+              </div>
+              <div class="menu-item">
+                <div class="item-info">
+                  <h4 class="item-name">Dawat Special Chicken Handi</h4>
+                  <p class="item-description">
+                    Our signature dish featuring succulent chicken pieces
+                    slow-cooked in a traditional handi with herbs and chef's
+                    secret spices
+                  </p>
+                </div>
+                <div class="item-price">₹450</div>
+              </div>
+              <div class="menu-item">
+                <div class="item-info">
+                  <h4 class="item-name">Mutton Rogan Josh</h4>
+                  <p class="item-description">
+                    Classic Kashmiri delicacy with tender mutton braised in
+                    aromatic spices, yogurt, and deep red gravy
+                  </p>
+                </div>
+                <div class="item-price">₹525</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Kebabs & Starters -->
+          <div class="menu-category">
+            <span class="category-icon">🍢</span>
+            <h3 class="category-title">Kebabs & Starters</h3>
+            <div class="menu-items">
+              <div class="menu-item">
+                <div class="item-info">
+                  <h4 class="item-name">Afghani Chicken Tikka</h4>
+                  <p class="item-description">
+                    Creamy, mildly spiced chicken tikka marinated in cashew
+                    paste, cream, and traditional Afghan spices
+                  </p>
+                </div>
+                <div class="item-price">₹375</div>
+              </div>
+              <div class="menu-item">
+                <div class="item-info">
+                  <h4 class="item-name">Seekh Kebab</h4>
+                  <p class="item-description">
+                    Minced meat blended with aromatic herbs and spices, grilled
+                    to perfection on skewers
+                  </p>
+                </div>
+                <div class="item-price">₹350</div>
+              </div>
+              <div class="menu-item">
+                <div class="item-info">
+                  <h4 class="item-name">Tandoori Chicken</h4>
+                  <p class="item-description">
+                    Marinated in yogurt and signature spice blend, cooked to
+                    smoky perfection in the tandoor
+                  </p>
+                </div>
+                <div class="item-price">₹325</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Curries -->
+          <div class="menu-category">
+            <span class="category-icon">🍛</span>
+            <h3 class="category-title">Curries</h3>
+            <div class="menu-items">
+              <div class="menu-item">
+                <div class="item-info">
+                  <h4 class="item-name">Butter Chicken</h4>
+                  <p class="item-description">
+                    The all-time favorite - tender chicken in a silky, rich
+                    tomato-butter gravy with a touch of cream
+                  </p>
+                </div>
+                <div class="item-price">₹400</div>
+              </div>
+              <div class="menu-item">
+                <div class="item-info">
+                  <h4 class="item-name">Kadhai Chicken</h4>
+                  <p class="item-description">
+                    Wok-tossed chicken with bell peppers, tomatoes, and freshly
+                    ground spices for a robust flavor
+                  </p>
+                </div>
+                <div class="item-price">₹395</div>
+              </div>
+              <div class="menu-item">
+                <div class="item-info">
+                  <h4 class="item-name">Mutton Korma</h4>
+                  <p class="item-description">
+                    Royal Mughlai preparation with tender mutton in a rich,
+                    nutty gravy with aromatic whole spices
+                  </p>
+                </div>
+                <div class="item-price">₹500</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Rice & Biryani -->
+          <div class="menu-category">
+            <span class="category-icon">🍚</span>
+            <h3 class="category-title">Rice & Biryani</h3>
+            <div class="menu-items">
+              <div class="menu-item">
+                <div class="item-info">
+                  <h4 class="item-name">Chicken Biryani</h4>
+                  <p class="item-description">
+                    Fragrant basmati rice layered with marinated chicken,
+                    saffron, and aromatic spices, slow-cooked to perfection
+                  </p>
+                </div>
+                <div class="item-price">₹425</div>
+              </div>
+              <div class="menu-item">
+                <div class="item-info">
+                  <h4 class="item-name">Mutton Biryani</h4>
+                  <p class="item-description">
+                    Premium long-grain rice with succulent mutton pieces, cooked
+                    dum-style with traditional spices and saffron
+                  </p>
+                </div>
+                <div class="item-price">₹525</div>
+              </div>
+              <div class="menu-item">
+                <div class="item-info">
+                  <h4 class="item-name">Jeera Rice</h4>
+                  <p class="item-description">
+                    Fragrant basmati rice tempered with cumin seeds and ghee,
+                    the perfect accompaniment to curries
+                  </p>
+                </div>
+                <div class="item-price">₹175</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery" id="gallery">
+      <div class="container">
+        <h2 class="section-title">Food Gallery</h2>
+        <p class="section-subtitle">
+          A Visual Journey Through Our Culinary Art
+        </p>
+
+        <div class="gallery-grid">
+          <div class="gallery-item">
+            <div class="gallery-placeholder">🍗</div>
+            <div class="gallery-overlay">Tandoori Delights</div>
+          </div>
+          <div class="gallery-item">
+            <div class="gallery-placeholder">🍛</div>
+            <div class="gallery-overlay">Rich Curries</div>
+          </div>
+          <div class="gallery-item">
+            <div class="gallery-placeholder">🍚</div>
+            <div class="gallery-overlay">Aromatic Biryanis</div>
+          </div>
+          <div class="gallery-item">
+            <div class="gallery-placeholder">🥘</div>
+            <div class="gallery-overlay">Royal Gravies</div>
+          </div>
+          <div class="gallery-item">
+            <div class="gallery-placeholder">🍢</div>
+            <div class="gallery-overlay">Smoky Kebabs</div>
+          </div>
+          <div class="gallery-item">
+            <div class="gallery-placeholder">🥗</div>
+            <div class="gallery-overlay">Fresh Accompaniments</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="why-choose">
+      <div class="container">
+        <h2 class="section-title">Why People Love Dawat</h2>
+        <p class="section-subtitle">Excellence in Every Aspect</p>
+
+        <div class="reasons-grid">
+          <div class="reason-card">
+            <div class="reason-icon">👑</div>
+            <h3>Authentic Royal Taste</h3>
+            <p>
+              Recipes inspired by royal kitchens, prepared by experienced chefs
+              who understand the art of traditional Indian cuisine
+            </p>
+          </div>
+          <div class="reason-card">
+            <div class="reason-icon">👨‍👩‍👧‍👦</div>
+            <h3>Family & Party Friendly</h3>
+            <p>
+              Spacious seating arrangements perfect for family gatherings,
+              celebrations, and special occasions
+            </p>
+          </div>
+          <div class="reason-card">
+            <div class="reason-icon">✨</div>
+            <h3>Hygienic Kitchen</h3>
+            <p>
+              Maintaining the highest standards of cleanliness and food safety
+              in our state-of-the-art kitchen
+            </p>
+          </div>
+          <div class="reason-card">
+            <div class="reason-icon">⚡</div>
+            <h3>Fast Service & Comfort</h3>
+            <p>
+              Efficient service combined with comfortable seating ensures a
+              pleasant dining experience every time
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Location & Contact -->
+    <section class="location" id="contact">
+      <div class="container">
+        <h2 class="section-title">Visit Us</h2>
+        <p class="section-subtitle">Find Your Way to Royal Flavors</p>
+
+        <div class="location-grid">
+          <div class="contact-card">
+            <h3>Contact Information</h3>
+            <div class="contact-info">
+              <div class="contact-item">
+                <span>📍</span>
+                <span
+                  >Dawat Restaurant, Premium Location<br />City Center, Near
+                  Landmark</span
+                >
+              </div>
+              <div class="contact-item">
+                <span>📞</span>
+                <a href="tel:+911234567890">+91 123 456 7890</a>
+              </div>
+              <div class="contact-item">
+                <span>💬</span>
+                <a href="https://wa.me/911234567890">WhatsApp Us</a>
+              </div>
+              <div class="contact-item">
+                <span>✉️</span>
+                <a href="mailto:info@dawatrestaurant.com"
+                  >info@dawatrestaurant.com</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-card">
+            <h3>Opening Hours</h3>
+            <ul class="hours-list">
+              <li>
+                <span>Monday - Thursday</span>
+                <span>12:00 PM - 11:00 PM</span>
+              </li>
+              <li>
+                <span>Friday - Sunday</span>
+                <span>12:00 PM - 12:00 AM</span>
+              </li>
+              <li>
+                <span>Public Holidays</span>
+                <span>12:00 PM - 12:00 AM</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="map-placeholder" style="margin-top: 3rem">🗺️</div>
+      </div>
+    </section>
+
+    <!-- CTA Banner -->
+    <section class="cta-banner">
+      <div class="cta-content">
+        <h2>Host Your Next Feast With Dawat</h2>
+        <p>Perfect venue for celebrations, gatherings, and special moments</p>
+        <div class="cta-buttons">
+          <a href="#" class="btn-cta">ORDER ONLINE</a>
+          <a href="#" class="btn-cta">BOOK A TABLE</a>
+          <a href="tel:+911234567890" class="btn-cta">CALL NOW</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-content">
+        <div class="footer-logo">DAWAT</div>
+        <div class="social-links">
+          <a href="#" title="Facebook">📘</a>
+          <a href="#" title="Instagram">📷</a>
+          <a href="#" title="Twitter">🐦</a>
+          <a href="#" title="YouTube">📺</a>
+        </div>
+        <p class="footer-text">
+          &copy; 2026 Dawat Restaurant. All rights reserved.
+        </p>
+        <p class="footer-tagline">Crafted with passion, served with love</p>
+      </div>
+    </footer>
+
+    <script>
+      // Navbar scroll effect
+      window.addEventListener("scroll", () => {
+        const navbar = document.getElementById("navbar");
+        if (window.scrollY > 100) {
+          navbar.classList.add("scrolled");
+        } else {
+          navbar.classList.remove("scrolled");
+        }
+      });
+
+      // Smooth scroll for navigation links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute("href"));
+          if (target) {
+            target.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+          }
+        });
+      });
+
+      // Intersection Observer for fade-in animations
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -100px 0px",
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = "1";
+            entry.target.style.transform = "translateY(0)";
+          }
+        });
+      }, observerOptions);
+
+      // Observe all cards and sections
+      document
+        .querySelectorAll(
+          ".feature-card, .menu-category, .gallery-item, .reason-card, .contact-card",
+        )
+        .forEach((el) => {
+          el.style.opacity = "0";
+          el.style.transform = "translateY(30px)";
+          el.style.transition = "opacity 0.6s ease, transform 0.6s ease";
+          observer.observe(el);
+        });
+    </script>
+  </body>
+</html>
